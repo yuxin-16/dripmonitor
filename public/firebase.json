@@ -6,32 +6,32 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "source": "/login",      
-        "run": {
-            "serviceId": "drip-monitor-backend",
-            "region": "us-central1"
-        }
-      },
-      {
-        "source": "/dashboard",  
-        "run": {
-            "serviceId": "drip-monitor-backend",
-            "region": "us-central1"
-        }
-      },
-      {
-        "source": "/patient-detail", 
-        "run": {
-            "serviceId": "drip-monitor-backend",
-            "region": "us-central1"
-        }
-      },
-      {
-        "source": "**",
-        "destination": "/login.html" // 預設的首頁是 login.html
-      }
-    ]
+    ""rewrites": [
+  {
+    "source": "/login",      
+    "run": {
+        "serviceId": "drip-monitor-backend",
+        "region": "us-central1" // 確保與您的 Cloud Run 部署區域一致
+    }
+  },
+  {
+    "source": "/dashboard",  
+    "run": {
+        "serviceId": "drip-monitor-backend",
+        "region": "us-central1"
+    }
+  },
+  {
+    "source": "/patient-detail", 
+    "run": {
+        "serviceId": "drip-monitor-backend",
+        "region": "us-central1"
+    }
+  },
+  {
+    "source": "**",
+    "destination": "/login.html" // 預設導向靜態登入頁
+  }
+]
   }
 }
