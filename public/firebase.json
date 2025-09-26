@@ -1,0 +1,37 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/login",      
+        "run": {
+            "serviceId": "drip-monitor-backend",
+            "region": "us-central1"
+        }
+      },
+      {
+        "source": "/dashboard",  
+        "run": {
+            "serviceId": "drip-monitor-backend",
+            "region": "us-central1"
+        }
+      },
+      {
+        "source": "/patient-detail", 
+        "run": {
+            "serviceId": "drip-monitor-backend",
+            "region": "us-central1"
+        }
+      },
+      {
+        "source": "**",
+        "destination": "/login.html" // 預設的首頁是 login.html
+      }
+    ]
+  }
+}

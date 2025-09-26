@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>病患詳細資料 - 點滴監測系統</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <a href="dashboard" class="back-link">
+                <i class="fas fa-arrow-left"></i> 返回儀表板
+            </a>
+        </div>
+        <div class="user-info">
+            <span>歡迎，護理師</span>
+            <button id="logoutBtn">登出</button>
+        </div>
+    </header>
+
+    <main class="patient-detail-container">
+        <h2 class="section-title" id="patient-name">病患詳細資料</h2>
+        
+        <section class="info-card">
+            <div class="data-group">
+                <span class="data-label">當前點滴重量：</span>
+                <span class="data-value" id="current-weight">-- g</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">當前流速：</span>
+                <span class="data-value" id="current-flow-rate">-- ml/min</span>
+            </div>
+            <div class="data-group">
+                <span class="data-label">點滴狀態：</span>
+                <span class="status-indicator" id="status-text">--</span>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <h3 class="subsection-title">重量變化趨勢圖</h3>
+            <canvas id="weightChart"></canvas>
+        </section>
+
+        <section class="prescription-section">
+            <h3 class="subsection-title">醫囑設定</h3>
+            <form id="prescriptionForm">
+                <div class="input-group">
+                    <label for="flowRate">預期流速 (ml/min)</label>
+                    <input type="number" id="flowRate" name="flowRate" placeholder="例如: 5" required>
+                </div>
+                <div class="input-group">
+                    <label for="totalWeight">點滴總重量 (g)</label>
+                    <input type="number" id="totalWeight" name="totalWeight" placeholder="例如: 500" required>
+                </div>
+                <button type="submit">儲存醫囑</button>
+                <div id="prescription-message" class="message"></div>
+            </form>
+        </section>
+    </main>
+    <script src="patient-detail.js"></script>
+</body>
+</html>

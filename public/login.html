@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點滴監測系統 - 護理師登入</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <h2>護理師登入</h2>
+            <form id="loginForm" method="post" action="/login"">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <div class="forgot-password">
+                    <a href="#">忘記密碼?</a>
+                </div>
+                <div id="message" class="message"></div>
+                {% if error %}
+                <p class="message error popup" style="display: block;">{{ error }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+   <!-- <script src="{{ url_for('static', filename='login.js') }}"></script> -->
+</body>
+</html>

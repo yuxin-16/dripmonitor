@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點滴監測系統 - 儀表板</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar-three-lines">
+    <div class="navbar-logo">點滴監測系統</div>
+    <div class="navbar-logout">
+        <button id="logoutBtn">登出</button>
+    </div>
+</header>
+
+    <main class="dashboard-container">
+    <div id="alert-bar-container">
+        </div>
+
+    <section class="patient-list">
+        <h2 class="section-title">我的負責病患</h2>
+        <div id="patient-cards-container" class="patient-cards-grid">
+            {% for patient in patients %}
+            <div class="patient-card status-{{ patient.status }}">
+                <div class="card-header">
+                    <a href="/patient-detail?name={{ patient.name }}" class="patient-name">{{ patient.name }}</a>
+                    <span class="room-number">房號: {{ patient.room }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="data-row">
+                        <span class="label">點滴重量:</span>
+                        <span class="value">{{ patient.iv_weight }} g</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="label">流速:</span>
+                        <span class="value">{{ patient.iv_rate }} ml/min</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

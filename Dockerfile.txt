@@ -1,0 +1,24 @@
+# 使用官方 Python 基礎映像
+FROM python:3.9-slim
+
+# 設定工作目錄
+WORKDIR /app
+
+# 複製 requirements.txt 並安裝依賴
+COPY requirements.txt .
+# --no-cache-dir 讓安裝過程不產生快取，減少容器大小
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 複製應用程式程式碼和 Firebase 服務帳戶金鑰
+COPY app.py .
+# **重要：請將您的金鑰檔案名替換為您實際下載的名稱！**
+COPY dripmonitor-d3089-firebase-adminsdk-fbsvc-5a5c63974e.json . 
+
+# 暴露應用程式運行的埠號
+# Cloud Run 預設要求應用程式監聽 8080 port
+ENV PORT 8080
+EXPOSE $PORT
+
+# 啟動 Gunicorn WSGI 伺服器
+# 假設您的 Flask 應用實例名為 'app' (在 app.py 中定義)
+CMD exec gunicorn --bind :$PORT --workers 1 app:app
